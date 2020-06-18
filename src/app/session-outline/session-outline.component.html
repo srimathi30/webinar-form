@@ -1,0 +1,25 @@
+<div class="card-body" style="width: 65rem;">
+    <h4 class="card-title">Session Outline and TIMELINE (this must be VERY specific). What topics are being covered and how much time is
+        being spent on each topic. Incomplete, or, timelines not specific enough will not be able to be considered.
+        Thank you.</h4>
+    <form [formGroup]="sessionForm">
+        <label>SESSION OUTLINE: Please include a detailed outline of your session. Indicate the time sequence of each
+                topic/activity in your presentation. (This must be a detailed outline that shows times spent on what
+                topics in order to get approved for CEU's) - The outline MUST list the topics and a specific timeline or
+                it will not be able to be considered. Please be as specific as possible!.</label>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <textarea type="text" id="about" class="form-control" formControlName="about"></textarea>
+                <small class="form-text text-danger" *ngIf="sessionForm.get('about').touched && sessionForm.controls.about.errors">
+                    {{sessionForm.controls.about.errors.required.message}}</small>
+            </div>
+        </div>
+    </form>
+    <button type="submit" class="btn btn-primary"
+                [title]="sessionForm.valid ? 'Save your entered data' : 'Kindly enter the valid data'"
+                [disabled]="!sessionForm.valid" (click)="onSave()">Save</button>
+</div>
+<!-- <br>Dirty: {{ sessionForm.dirty }}
+<br>Touched: {{ sessionForm.touched }}
+<br>Valid: {{ sessionForm.valid }}
+<br>Value: {{ sessionForm.value | json }} -->

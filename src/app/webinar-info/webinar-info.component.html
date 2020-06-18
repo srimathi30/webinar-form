@@ -1,0 +1,171 @@
+<div class="card-body" style="width: 65rem;">
+    <h4 class="card-title">Webinar Session Information</h4>
+    <form [formGroup]="webinarForm">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="title"><b>Webinar title</b></label>
+                <input type="text" id="title" class="form-control" maxlength="10" formControlName="title" />
+                <label style="font-size: small;">Limit to 10 characters</label>
+                <small class="form-text text-danger"
+                    *ngIf="webinarForm.get('title').touched && webinarForm.controls.title.errors">{{webinarForm.controls.title.errors.required.message}}</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="description"><b>Webinar description</b></label>
+                <textarea type="text" id="description" class="form-control" formControlName="description" maxlength="450"></textarea>
+                <label style="font-size: small;">Max of 450 characters</label>
+                <small class="form-text text-danger"
+                    *ngIf="webinarForm.get('description').touched && webinarForm.controls.description.errors">{{webinarForm.controls.description.errors.required.message}}</small>
+            </div>
+            <label style="font-size: small;">Limit to one paragraph (max. of 450 characters). Briefly describe the proposed session. Entice people to come to this session by creating an exciting session description.</label>
+        </div>
+        <label for="webinarType"><b>Are you submitting a taped webinar or live one?</b></label>
+        <div class="form-row">
+            <div class="col-md-8">
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" value="Taped" formControlName="webinarType"> Taped
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" value="Live" formControlName="webinarType">Live
+                    </label>
+                </div>
+            </div>
+            <label style="font-size: small;">** Please note that we typically do taped webinars (All webinars must be a minimum of 70 minutes long and we collect 10 questions with 4 potential answers that individuals must watch the entire webinar in order to be able to answer)</label>
+        </div>
+        <label for="identification"><b>NEEDS IDENTIFICATION</b></label>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <textarea type="text" id="identification" class="form-control"
+                    formControlName="identification"></textarea>
+                    <small class="form-text text-danger" *ngIf="webinarForm.get('identification').touched && webinarForm.controls.identification.errors">
+                        {{webinarForm.controls.identification.errors.required.message}}</small>
+            </div>
+            <label for="identification" style="font-size: small;">(What is the issue?) Limit to one paragraph.
+                Provide a clear explanation of how the need for this session was identified.
+                Why even have this session?</label>
+                
+        </div>
+        <label><b>LEARNING OBJECTIVES: Provide a clear statement of learning objectives.
+                Learning outcomes or objectives are written statements that provide a framework for activity, course, or
+                program planning.
+                They are the basis for selection of content and instructional strategies as they describe to learners
+                exactly what knowledge, skills and abilities they are expected to accomplish as a result of the
+                learning.
+                Learning objectives/outcomes are the basis for measuring progress and a final assessment of learning.
+                Please limit learning objectives to one sentence per outcome, using the following format:</b></label>
+        <label><b>Upon completion of this webinar participants will:</b></label>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="learningObj1"><b> Learning Objective 1</b></label>
+                <input type="text" id="learningObj1" class="form-control" formControlName="learningObj1" />
+                <small class="form-text text-danger"
+                    *ngIf="webinarForm.get('learningObj1').touched && webinarForm.controls.learningObj1.errors">{{webinarForm.controls.learningObj1.errors.required.message}}</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="learningObj2"><b> Learning Objective 2</b></label>
+                <input type="text" id="learningObj2" class="form-control" formControlName="learningObj2" />
+                <small class="form-text text-danger"
+                    *ngIf="webinarForm.get('learningObj2').touched && webinarForm.controls.learningObj2.errors">{{webinarForm.controls.learningObj2.errors.required.message}}</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="learningObj3"><b> Learning Objective 3</b></label>
+                <input type="text" id="learningObj3" class="form-control" formControlName="learningObj3" />
+                <small class="form-text text-danger"
+                    *ngIf="webinarForm.get('learningObj3').touched && webinarForm.controls.learningObj3.errors">{{webinarForm.controls.learningObj3.errors.required.message}}</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="learningObj4"><b> Learning Objective 4</b></label>
+                <input type="text" id="learningObj4" class="form-control" formControlName="learningObj4" />
+                <small class="form-text text-danger"
+                    *ngIf="webinarForm.get('learningObj4').touched && webinarForm.controls.learningObj4.errors">{{webinarForm.controls.learningObj4.errors.required.message}}</small>
+            </div>
+        </div>
+        <label><b>JOB FUNCTION of the Target Audience. Check the box which is most applicable.
+                This function may not reflect the actual job title.</b></label>
+        <div class="form-group">
+            <div *ngFor="let target of input.audience;let i=index">
+                <label>
+                    <input type="checkbox" [value]="target.value" (change)="onTargetAudienceChange($event)">
+                    {{target.name}}</label>
+                    
+            </div>
+        </div>
+
+        <label><b>Has this speaker taught adult continuing education programs before?</b></label>
+        <div class="form-group">
+            <div *ngFor="let tracks of input.tracks; let i=index;">
+                <label>
+                    <input type="checkbox" [value]="tracks.value" (change)="onTrackChange($event)">
+                    {{tracks.name}}</label>
+                    
+            </div>
+        </div>
+        <label><b>Has this speaker taught adult continuing education programs before?</b></label>
+        <div class="form-group">
+            <div>
+                <label>
+                    <input type="radio" value="yes" formControlName="speakerProgramBefore">
+                    Yes</label>
+            </div>
+            <div>
+                <label>
+                    <input class="falseCheck" type="radio" value="no" formControlName="speakerProgramBefore" >
+                    No</label>
+            </div>
+            <small class="form-text text-danger"
+                    *ngIf="webinarForm.get('speakerProgramBefore').touched && webinarForm.controls.speakerProgramBefore.errors">{{webinarForm.controls.speakerProgramBefore.errors.required.message}}</small>
+        </div>
+        <label><b>Briefly describe the speaker's experience teaching adults, including other conferences and training
+                events where the speaker has presented.
+                If this particular session has been offered before, please be sure to include where and when (e.g. AOAP
+                2019, State Conferences, National Conferences,
+                local presentations, etc.)</b></label>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <textarea type="text" id="speakerExp" class="form-control" formControlName="speakerExp"></textarea>
+                <small class="form-text text-danger"
+                    *ngIf="webinarForm.get('speakerExp').touched && webinarForm.controls.speakerExp.errors">{{webinarForm.controls.speakerExp.errors.required.message}}</small>
+            </div>
+            
+        </div>
+        <label><b>SPEAKER BIOGRAPHY: Please provide a brief bio for website posting.</b></label>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <textarea type="text" id="speakerBio" class="form-control" formControlName="speakerBio"></textarea>
+                <small class="form-text text-danger"
+                    *ngIf="webinarForm.get('speakerBio').touched && webinarForm.controls.speakerBio.errors">{{webinarForm.controls.speakerBio.errors.required.message}}</small>
+            </div>
+            
+        </div>
+        <label><b>SPEAKER INTRODUCTION: We would like to briefly introduce each speaker at the start of their session.
+                Please provide a very brief introduction which we can read to your audience. If you prefer not to be
+                introduced, please list "NO INTRODUCTION NECESSARY." Please do not say "see bio" as that will not copy
+                correctly to the introduction form. Thank you.</b></label>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <textarea type="text" id="speakerIntro" class="form-control" formControlName="speakerIntro"></textarea>
+                <small class="form-text text-danger"
+                *ngIf="webinarForm.get('speakerIntro').touched && webinarForm.controls.speakerIntro.errors">{{webinarForm.controls.speakerIntro.errors.required.message}}</small>
+            </div>
+            
+        </div>
+
+    </form>
+    <button type="submit" class="btn btn-primary"
+                [title]="webinarForm.valid ? 'Save your entered data' : 'Kindly enter the valid data'"
+                [disabled]="!webinarForm.valid" (click)="onSave()">Save</button>
+</div>
+<!-- <br>Dirty: {{ webinarForm.dirty }}
+<br>Touched: {{ webinarForm.touched }}
+<br>Valid: {{ webinarForm.valid }}
+<br>Value: {{ webinarForm.value | json }} -->

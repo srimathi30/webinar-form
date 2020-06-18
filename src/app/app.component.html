@@ -1,0 +1,22 @@
+
+<div class="card" style="width: 65rem;">
+    <div class="card-header">
+        <h2>Submit a Webinar</h2>
+    </div>
+    <app-speaker-info (onSaving)="onSave($event)"></app-speaker-info>
+    <app-webinar-info (onSaving)="onSave($event)"></app-webinar-info>
+    <app-session-outline (onSaving)="onSave($event)"></app-session-outline>
+    <app-speaker-terms (onSaving)="onSave($event)"></app-speaker-terms>
+    <div class="card-body">
+        <button type="submit" class="btn btn-success" (click)="onSubmit()"
+            [title]="submission ? 'Save your entered data' : 'Kindly enter the valid data'"
+            [disabled]="!submission.length">
+            Submit</button>
+    </div>       
+</div>
+
+
+<!-- <br>Dirty: {{ speakerForm.dirty }}
+<br>Touched: {{ speakerForm.touched }}
+<br>Valid: {{ speakerForm.valid }}
+<br>Value: {{ speakerForm.value | json }} -->

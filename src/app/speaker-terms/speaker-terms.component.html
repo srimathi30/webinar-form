@@ -1,0 +1,61 @@
+<div class="card-body" style="width: 65rem;">
+    <h4 class="card-title">Speaker Terms and Conditions</h4>
+    <form [formGroup]="speakerTermsForm">
+        <label>Handouts: If your webinar is chosen, handouts MUST be submitted electronically to Juliene Hefter
+                (juliene@aquaticpros.org) . Speakers will present directly from their computers (with webcams
+                available), as our webinars are taped showing your powerpoint presentation from your computer as well as
+                you being taped providing the webinar. This makes for a much better learning experience for the
+                participants.</label>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label><b>Please provide your initials as signature that you have read and understand all speaker
+                        policies and procedures.</b></label>
+                <input type="text" id="signature" class="form-control" formControlName="signature">
+                <small class="form-text text-danger" *ngIf="speakerTermsForm.get('signature').touched && speakerTermsForm.controls.signature.errors">
+                    {{speakerTermsForm.controls.signature.errors.required.message}}</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label><b>Please provide an e-mail address where you would like a copy of the information that you
+                        provided sent to.
+                    </b></label>
+                <input type="text" id="email" class="form-control" formControlName="email">
+                <small class="form-text text-danger" *ngIf="speakerTermsForm.get('email').touched && speakerTermsForm.controls.email.errors">
+                    {{speakerTermsForm.controls.email.errors.required.message}}</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label><b>Please provide your "Twitter Username" if you have one
+                    </b></label>
+                <input type="text" id="twitterId" class="form-control" formControlName="twitterId">
+                <small class="form-text text-danger" *ngIf="speakerTermsForm.get('twitterId').touched && speakerTermsForm.controls.twitterId.errors">
+                    {{speakerTermsForm.controls.twitterId.errors.required.message}}</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label><b>Please enter your job title
+                    </b></label>
+                <input type="text" id="jobTitle" class="form-control" formControlName="jobTitle">
+                <small class="form-text text-danger" *ngIf="speakerTermsForm.get('jobTitle').touched && speakerTermsForm.controls.jobTitle.errors">
+                    {{speakerTermsForm.controls.jobTitle.errors.required.message}}</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label><b>Please upload a Photo that we may use to promote the webinar.</b></label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" 
+            formControlName="photo" (change)="onFileChange($event)">
+            <label style="font-size: small;">The photo should be in jpeg format</label>
+            
+        </div>
+    </form>
+    <button type="submit" class="btn btn-primary"
+                [title]="speakerTermsForm.valid ? 'Save your entered data' : 'Kindly enter the valid data'"
+                [disabled]="!speakerTermsForm.valid" (click)="onSave()">Save</button>
+</div>
+<!-- <br>Dirty: {{ speakerTermsForm.dirty }}
+<br>Touched: {{ speakerTermsForm.touched }}
+<br>Valid: {{ speakerTermsForm.valid }}
+<br>Value: {{ speakerTermsForm.value | json }} -->
