@@ -19,7 +19,6 @@ import { SpeakerTermsComponent } from './speaker-terms/speaker-terms.component';
     WebinarInfoComponent,
     SessionOutlineComponent,
     SpeakerTermsComponent
-   
   ],
   imports: [
     BrowserModule,
